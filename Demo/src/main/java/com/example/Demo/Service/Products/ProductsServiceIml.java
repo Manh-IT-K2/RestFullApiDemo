@@ -1,4 +1,4 @@
-package com.example.Demo.Service;
+package com.example.Demo.Service.Products;
 
 import com.example.Demo.Model.Products;
 import com.example.Demo.Repository.ProductsRepository;
@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductsServiceIml implements ProductsService{
+public class ProductsServiceIml implements ProductsService {
 
     private final ProductsRepository productsRepository;
 

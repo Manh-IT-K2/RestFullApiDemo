@@ -11,23 +11,19 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "products")
-public class Products {
-
+@Table(name = "category")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
-    @Column(name = "name_product")
-    private String name_product;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
-    private int price;
-    @Column(name = "category_id ")
-    private int categoryId ;
-
+    @Column(name = "parent_id ")
+    private Integer parentId ;
 }
