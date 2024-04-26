@@ -29,4 +29,14 @@ public class ProductsServiceIml implements ProductsService{
             return null;
         }
     }
+
+    @Override
+    public void updateProduct(Products products){
+        productsRepository.updateProduct(products.getName_product(), products.getDescription(), products.getPrice(), products.getId());
+    }
+
+    @Override
+    public void deleteProduct(long id) {
+        productsRepository.deleteById(id);
+    }
 }
