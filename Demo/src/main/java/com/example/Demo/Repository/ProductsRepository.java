@@ -8,8 +8,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface ProductsRepository extends JpaRepository<Products, Long> {
 
+    // create product
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO products (name_product, description, price) VALUES (?1, ?2, ?3)", nativeQuery = true)
+    Products createProduct(String name_product, String description, int price);
+
+    // update product
     @Modifying
     @Transactional
     @Query(value = "UPDATE products p SET p.name_product = ?1, p.description = ?2, p.price = ?3 WHERE p.id = ?4", nativeQuery = true)
     void updateProduct(String name_product, String description, int price, long id);
+
+    // delete product
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM products WHERE id = ?1", nativeQuery = true)
+    void deleteProduct(long id);
+
 }
