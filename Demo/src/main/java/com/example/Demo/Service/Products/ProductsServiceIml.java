@@ -20,7 +20,8 @@ public class ProductsServiceIml implements ProductsService {
     public Products addProduct(Products products) {
         try{
             if(!products.getName_product().isEmpty() && !products.getDescription().isEmpty() && products.getPrice() > 0){
-                return productsRepository.save(products);
+                //return productsRepository.save(products);
+                  return productsRepository.createProduct(products.getName_product(), products.getDescription(), products.getPrice());
             } else {
                 return  null;
             }
@@ -37,6 +38,7 @@ public class ProductsServiceIml implements ProductsService {
 
     @Override
     public void deleteProduct(long id) {
-        productsRepository.deleteById(id);
+        //productsRepository.deleteById(id);
+        productsRepository.deleteProduct(id);
     }
 }
