@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/api/v1/products")
 @RestController
 public class ProductsController {
@@ -46,4 +48,18 @@ public class ProductsController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred");
         }
     };
+
+    // find product
+    @GetMapping("/findProductByName")
+    public ResponseEntity<?> findProductByName(@RequestParam String name_product, @RequestParam int limit) {
+        try {
+            if (name_product.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("userId is required");
+            }
+            List<Products> result = productsService.findProductByName(name_product,limit);
+            return result == null ? ResponseEntity.status(HttpStatus.OK).body("No data") : ResponseEntity.status(HttpStatus.OK).body(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred");
+        }
+    }
 }
