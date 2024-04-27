@@ -1,12 +1,12 @@
 package com.example.Demo.Service.Category;
 
-import com.example.Demo.Model.Category;
+import com.example.Demo.Modal.Category;
 import com.example.Demo.Repository.CategoryRepository;
 import com.example.Demo.Response.ApiResponse;
+import com.example.Demo.Response.Category.ResponseGetProductByCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,12 +32,10 @@ public class CategoryServiceImpl implements CategoryService {
         if(category.getId() <= 0) {
             return new ApiResponse<>(false, "Invalid category ID", null);
         }
-
         Optional<Category> optionalCategory = categoryRepository.findById(category.getId());
         if(optionalCategory.isEmpty()) {
             return new ApiResponse<>(false, "Category not found", null);
         }
-
         Category existingCategory = optionalCategory.get();
         // Cập nhật thông tin của danh mục chỉ khi có dữ liệu mới được cung cấp
         if(!category.getName().isEmpty()) {
@@ -49,7 +47,6 @@ public class CategoryServiceImpl implements CategoryService {
         if(category.getParentId() != null) {
             existingCategory.setParentId(category.getParentId());
         }
-
         // Lưu danh mục đã cập nhật vào cơ sở dữ liệu
         Category updatedCategory = categoryRepository.save(existingCategory);
         return new ApiResponse<>(true, "Update Success", updatedCategory);
@@ -69,5 +66,12 @@ public class CategoryServiceImpl implements CategoryService {
             return new ApiResponse<>(true,"Delete Success","Success");
         }
         return new ApiResponse<>(false,"IdCategory Not Exits","Error");
+    }
+
+    @Override
+    public ApiResponse<List<ResponseGetProductByCategory>> getProductsByCategory() {
+        List<ResponseGetProductByCategory> responseGetProductByCategories = categoryRepository.getProductByCategory();
+        return new ApiResponse<>(true,"Success",responseGetProductByCategories);
+        //return new ApiResponse<>(false,"No product by category",null);
     }
 }

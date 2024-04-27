@@ -1,7 +1,8 @@
 package com.example.Demo.Controller;
 
-import com.example.Demo.Model.Category;
+import com.example.Demo.Modal.Category;
 import com.example.Demo.Response.ApiResponse;
+import com.example.Demo.Response.Category.ResponseGetProductByCategory;
 import com.example.Demo.Service.Category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,6 +51,15 @@ public class CategoryController {
             System.err.println(id);
             category.setId(id);
             ApiResponse<String> result = categoryService.deleteCategory(category);
+            return ResponseEntity.status(HttpStatus.OK).body(result);
+        } catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred");
+        }
+    };
+    @GetMapping("/getProductByCategory")
+    public ResponseEntity<?> getProductsByCategory(){
+        try{
+            ApiResponse<List<ResponseGetProductByCategory>> result = categoryService.getProductsByCategory();
             return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred");

@@ -1,6 +1,6 @@
 package com.example.Demo.Service.Products;
 
-import com.example.Demo.Model.Products;
+import com.example.Demo.Modal.Products;
 import com.example.Demo.Repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

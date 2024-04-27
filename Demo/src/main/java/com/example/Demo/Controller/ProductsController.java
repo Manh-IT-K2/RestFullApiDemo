@@ -1,6 +1,6 @@
 package com.example.Demo.Controller;
 
-import com.example.Demo.Model.Products;
+import com.example.Demo.Modal.Products;
 import com.example.Demo.Service.Products.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
