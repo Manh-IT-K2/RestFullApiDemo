@@ -1,4 +1,4 @@
-package com.example.Demo.Modal;
+package com.example.Demo.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,7 +27,5 @@ public class Products {
 
     @Column(name = "price")
     private int price;
-    @Column(name = "category_id ")
-    private int categoryId ;
 
 }
