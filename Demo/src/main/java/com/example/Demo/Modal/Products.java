@@ -26,6 +26,6 @@ public class Products {
     private String description;
 
     @Column(name = "price")
-    private Integer price;
+    private int price;
 
 }
